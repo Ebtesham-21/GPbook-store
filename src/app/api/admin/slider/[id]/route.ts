@@ -22,22 +22,7 @@ export async function GET(request: Request, {params}: {params: {id: string}}) {
     }
 }
 
-export async function PUT(request: Request, {params}: {params: {id: string}}) {
-    const {id} = params;
-    const {title, description, imageUrl} = await request.json();
 
-    try {
-        await connectToDB();
-        const slider = await Slider.findById(id);
-        if(!slider) {
-            return NextResponse.json({error: 'Slider not found'}, {status: 404});
-        }
-        return NextResponse.json(slider);
-    } catch (error) {
-        return NextResponse.json({error: 'Error fetching slider'}, {status: 500});
-    }
-        
-}
 
 // put request
 

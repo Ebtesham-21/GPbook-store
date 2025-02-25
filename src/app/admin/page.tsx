@@ -1,23 +1,60 @@
 "use client";
-import { useState } from "react";
 
+import {useEffect, useState} from "react";
+
+interface Slider {
+    _id: string;
+    title: string;
+    description: string;
+    imageUrl: string;
+}
 
 export default function AdminPage() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [image, setImage] = useState<File | null>(null);
-    const [message, setMessage] = useState('');
+    const [sliders, setSliders] = useState<Slider[]>([]);
+    const [message, setMessage] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
+    const [imageUrl, setImage] = useState<File | null>(null);
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if(e.target.files){
-            setImage(e.target.files[0]);
+    useEffect(() => {
+        const fetchSliders = async () => {
+            try {
+                const res = await fetch ("/api/admin/slider");
+                if(!res.ok)
+                    throw new Error('Failed fetching sliders');
+                const data = await res.json();
+                setSliders(data.sliders);
+            } catch (error) {
+                console.log("error fetching sliders: ", error);
+            }
+        };
+        fetchSliders();
+    }, []);
+
+
+    const handleDelete = async (id: string) => {
+        const response = await fetch(`/api/admin/slider/${id}`, {
+            method: 'DELETE',
+        });
+
+        if(response.ok) {
+            setMessage('Slider deleted successfully');
+            setSliders(sliders.filter(slider => slider._id !== id));
+        } else {
+            setMessage("failed to delete slider");
         }
+
+
+    };
+
+    const handleEdit = {id: string} => {
+        console.log(`Edit slider with ID: ${id}`);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if(!image || !title || !description){
-            setMessage("All fields are required");
+        if(!image || !title || !description) {
+            setMessage('All fields are required');
             return;
         }
 
@@ -26,81 +63,60 @@ export default function AdminPage() {
         formData.append("upload_preset", "bookstore_uploads");
         formData.append("cloud_name", "dpiy18xkg");
 
-
         try {
-            const res = await fetch('https://api.cloudinary.com/v1_1/dpiy18xkg/image/upload', {
+            const cloudRes = await fetch("https://api.cloudinary.com/v1_1/dpiy18xkg/image/upload", {
                 method: 'POST',
                 body: formData,
-            
+            });
+
+        const cloudData = await cloudRes.json();
+        const imageUrl = cloudData.secure_url;
+
+        const response = await fetch("/api/admin/slider", {
+            method: "POST",
+            body: JSON.stringify({title, description, imageUrl}),
+            headers: {
+                "Content-Type" : "application/json",
+
+            },
+
+        
         });
 
-        const data = await res.json();
-        const imageUrl = data.secure_url;
-
-        const response = await fetch('/api/admin/slider', {
-            method: 'POST',
-            body: JSON.stringify({ title, description, imageUrl }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        
-    });
-
-    const result = await response.json();
-    if(response.ok) {
-        setMessage('Slider updated successfully');
-    } else {
-        setMessage(result.error || 'Failed to update slider');
+        const result = await response.json();
+        if(response.ok) {
+            setMessage("Slider created successfully");
+            setSliders([...sliders, result.slider]);
+        } else {
+            setMessage(result.error || "Failed to add slider");
+        }
+    } catch (error) {
+        setMessage("Error uploading image");
     }
-} catch (error) {
-    setMessage('Error uploading image');
-}
-};
+    };
 
-return (
-    <div className="container mx-auto p-8">
-        <h1 className="text-2xl mb-4">
-            Admin Panel - Update Slider
-        </h1>
-        <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-                <label className="block text-sm font-medium">Title</label>
-                <input 
-                    type="text"
-                    value = {title}
-                    onChange = {(e) => setTitle(e.target.value)}
-                    className="mt-2 w-full border p-2"
-                    placeholder="Enter slider title"
-                />
-                
-            </div>
-            <div className="mb-4">
-          <label className="block text-sm font-medium">Description</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="mt-2 w-full border p-2"
-            placeholder="Enter slider description"
-          />
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files) {
+            setImage(e.target.files[0]);
+        }
+    };
+
+
+    return (
+        <div className="container mx-auto p-8">
+           <h1 className="text-2xl mb-4">
+                Admin Panel - Manage Sliders
+           </h1>
+           
+           
+        //    new slider form
+        <form onSubmit={handleSubmit} className="mb-6 border p-4">
+            <h2 className="text-xl mb-2">
+                Add New Slider
+            </h2>
+        </form>
         </div>
+    )
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium">Image</label>
-          <input
-            type="file"
-            onChange={handleImageChange}
-            className="mt-2"
-          />
-        </div>
 
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-          Upload Slider
-        </button>
-      </form>
-
-      {message && <p className="mt-4 text-red-500">{message}</p>}
-    </div>
-  );
 }
-
-   
