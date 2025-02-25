@@ -109,12 +109,43 @@ export default function AdminPage() {
            </h1>
            
            
-        //    new slider form
+         {/* new slider form */}
         <form onSubmit={handleSubmit} className="mb-6 border p-4">
             <h2 className="text-xl mb-2">
                 Add New Slider
             </h2>
+            <input
+                type="text"
+                value={title}
+                onChange = { (e) => setTitle(e.target.value)}
+                placeholder="Title"
+                className="block w-full border p-2 mb-2"
+            />
+
+            <textarea
+                value={description}
+                onChange = {(e) => setDescription(e.target.value)}
+                placeholder="Description"
+                className="block w-full border p-2 mb-2"
+            />
+
+            <input type="file" onChange={handleImageChange} className="mb-2" />
+            <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
+                Upload Slider
+
+            </button>
         </form>
+
+        <div className="space-y-4">
+            {sliders.map((slider) => (
+                <div key={slider._id} className="border p-4">
+                    <h3 className="text-xl">{slider.title}</h3>
+                    <p>{slider.description}</p>
+                    
+                </div>
+            ))}
+
+        </div>
         </div>
     )
 
