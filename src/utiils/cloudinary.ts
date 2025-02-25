@@ -9,8 +9,16 @@ cloudinary.config({
 export const uploadImageToCloudinary = async (file: Express.Multer.File) => {
     try {
         const result = await cloudinary.v2.uploader.upload(file.path);
-        return result.secure_url;
+        return {imageUrl: result.secure.url, publicId: result.public.id};
     } catch (error) {
-        throw new Error("Error uploading image ");
+        throw new Error("Error uploading image");
+    }
+};
+
+export const deleteImageFromCloudinary = async (publicId: string) => {
+    try {
+        await cloudinary.v2.uploader.destroy(publicId);
+    } catch (error) {
+        throw new Error("error deleting image from cloudinary");
     }
 };

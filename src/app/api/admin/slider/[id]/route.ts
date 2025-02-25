@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import {connectToDatabase} from "@/utiils/db";
+import connectToDatabase from "@/utiils/db";
 import Slider from "@/models/Slider";
-import cloudinary from "@/utils/cloudinary";
+import {deleteImageFromCloudinary, uploadImageToCloudinary} from "@/utiils/cloudinary";
 
 async function connectToDB() {
     await connectToDatabase();
 }
 
 export async function GET(request: Request, {params}: {params: {id: string}}) {
-    const {id} = params;
+    const {id} = await params;
 
     try {
         await connectToDB();
@@ -38,7 +38,7 @@ export async function PUT(request: Request, {params}: {params: {id: string}}) {
         }
 
         if(imageUrl && imageUrl !== slider.imageUrl) {
-            await cloudinary.v2.uploader.destroy(slider.PublicId);
+            await uploadImageToCloudinary.v2.uploader.destroy(slider.PublicId);
         }
 
         slider.title = title;
@@ -63,10 +63,15 @@ export async function DELETE(request: Request, {params}: {params: {id: string}})
             return NextResponse.json({error: 'Slider not found'}, {status: 404});
         }
 
-        await cloudinary.v2.uploader.destroy(slider.PublicId);
+        if(slider.publicId) {
+            await deleteImageFromCloudinary(slider.publicId);
+        }
+
         await slider.remove();
 
+        
         return NextResponse.json({message: 'Slider deleted successfully'});
+        
     } catch (error) {
         return NextResponse.json({error: 'Error deleting slider'}, {status: 500});
     }
