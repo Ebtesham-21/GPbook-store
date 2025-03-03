@@ -9,7 +9,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-    await dbConnect();
+    await connectDB();
     const { title, price, imageUrl } = await req.json();
   
     if (!title || !price || !imageUrl) {
