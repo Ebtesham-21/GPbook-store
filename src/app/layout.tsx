@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/shared/navbar";
 import ImageSlider from "@/components/shared/ImageSlider";
+import LatestAddition from "@/components/LatestAddition";
 import './globals.css';
 
 // export const metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <>
             <Navbar />
             <ImageSlider />
+            <LatestAddition/>
           </>
         )}
 
