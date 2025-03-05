@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 interface Book {
@@ -13,6 +14,7 @@ interface Book {
 export default function LatestAddition() {
     const [books, setBooks] = useState<Book[]>([]);
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
     useEffect(() => {
         fetchBooks();
@@ -29,6 +31,12 @@ export default function LatestAddition() {
             setLoading(false);
         }
     };
+
+
+    const handleAddToCart = (book: Book) => {
+        localStorage.setItem("selectedProduct", JSON.stringify({title: book.title, price: book.price }));
+        router.push("/order");
+    }
 
     return (
         <div className="w-full px-6 md:px-20 py-8 my-12 bg-[#FFEED6] flex flex-col items-center relative " >
@@ -71,7 +79,9 @@ export default function LatestAddition() {
                                 ${book.price.toFixed(2)}
                             </p>
 
-                            <button className="bg-[#FFEED6] hover:bg-[#F7B86D] text-black font-bold py-3 px-6 md:py-4 md:px-12 rounded-full transition duration-300 ">
+                            <button className="bg-[#FFEED6] hover:bg-[#F7B86D] text-black font-bold py-3 px-6 md:py-4 md:px-12 rounded-full transition duration-300 "
+                                onClick = {() => handleAddToCart(book)}
+                            >
                                 Add to Cart
 
                             </button>
