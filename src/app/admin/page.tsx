@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import AdminAnalytics from "@/components/admin/AdminAnalytics";
 
 interface Slider {
   _id: string;
@@ -160,9 +161,15 @@ export default function AdminDashboard() {
 
   return (
     <div className="container mx-auto p-8">
+
+
       <h1 className="text-3xl mb-6 font-bold">Admin Dashboard</h1>
 
       {message && <p className="text-red-500 mb-4">{message}</p>}
+
+
+      {/* Analytics section */}
+      <AdminAnalytics/>
 
       {/* Slider Management */}
       <div className="border p-4 mb-8">

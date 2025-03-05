@@ -63,7 +63,29 @@ export default function AdminAnalytics() {
                                 </th>
                             </tr>
                         </thead>
-                        
+
+                        <tbody>
+                            {topBooks.map((book) => (
+                                <tr key={book._id} className="text-center">
+                                    <td className="border p-3">
+                                        <img src={book.imageUrl} alt={book.title} className="w-16 h-16 object-cover rounded-md"/>
+                                    </td>
+                                    <td className="border p-3">
+                                        {book.title}
+                                    </td>
+                                    <td className="border p-3">
+                                        ${book.price.toFixed(2)}
+                                    </td>
+                                    <td className="border p-3">
+                                       {book.sales}
+                                    </td>
+
+
+
+                                </tr>
+                            ))}
+                        </tbody>
+
 
                     </table>
 
@@ -72,5 +94,5 @@ export default function AdminAnalytics() {
             ) }
 
         </div>
-    )
+    );
 }
