@@ -89,10 +89,26 @@ const Footer: React.FC = () => {
 
                 {/* Logo & Social Icons Section */}
                 <div className="flex flex-col md:flex-row justify-between items-center w-full mt-20">
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center mb-6 md:mb-0">
-                        <Image src="/assets/logo.png" alt="BookStore Logo" width={200} height={200} className="w-40 md:w-52" />
-                    </Link>
+                   
+                    <div className="flex flex-col items-start space-y-4" >
+                         {/* Logo */}
+                        <Link href="/" className="flex items-center mb-6 md:mb-0">
+                            <Image src="/Logo-01.png"  alt="BookStore Logo" width={600} height={600}  />
+                            {/* className="w-40 md:w-98" */}
+                        </Link>
+
+                        <p className="text-3xl text-[#fde047]">info@99explainers.com</p>
+                        <p className="text-3xl text-[#fde047]">+88 01911-229-454</p>
+                        <p className="text-3xl text-[#fde047]">+1 647-949-9454</p>
+                        <p className="text-4xl font-extrabold text-[#fde047]">Bangladesh Studio:</p>
+                        <p className="text-3xl  text-[#fde047]">House#22, Road#04, Nikunja-2,
+                        Khilkhet, Dhaka-1229</p>
+                        <p className="text-4xl font-extrabold text-[#fde047]">Canada Studio:</p>
+                        <p className="text-3xl text-[#fde047]">2972 Danforth Ave, East York,
+                        ON, M4C 1M6</p>
+
+                    </div>
+                    
 
                     {/* Social Icons */}
                     <div className="flex space-x-4">
