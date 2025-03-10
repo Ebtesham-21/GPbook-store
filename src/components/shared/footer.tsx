@@ -93,39 +93,39 @@ const Footer: React.FC = () => {
                     <div className="flex flex-col items-start space-y-4" >
                          {/* Logo */}
                         <Link href="/" className="flex items-center mb-6 md:mb-0">
-                            <Image src="/Logo-01.png"  alt="BookStore Logo" width={600} height={600}  />
+                            <Image src="/images/logo-2.png"  alt="BookStore Logo" width={400} height={400}  />
                             {/* className="w-40 md:w-98" */}
                         </Link>
 
-                        <p className="text-3xl text-[#fde047]">info@99explainers.com</p>
-                        <p className="text-3xl text-[#fde047]">+88 01911-229-454</p>
-                        <p className="text-3xl text-[#fde047]">+1 647-949-9454</p>
-                        <p className="text-4xl font-extrabold text-[#fde047]">Bangladesh Studio:</p>
-                        <p className="text-3xl  text-[#fde047]">House#22, Road#04, Nikunja-2,
+                        <p className="text-3xl text-yellow-500">info@99explainers.com</p>
+                        <p className="text-3xl text-yellow-500">+88 01911-229-454</p>
+                        <p className="text-3xl text-yellow-500">+1 647-949-9454</p>
+                        <p className="text-4xl font-extrabold text-yellow-500">Bangladesh Studio:</p>
+                        <p className="text-3xl  text-yellow-500">House#22, Road#04, Nikunja-2,
                         Khilkhet, Dhaka-1229</p>
-                        <p className="text-4xl font-extrabold text-[#fde047]">Canada Studio:</p>
-                        <p className="text-3xl text-[#fde047]">2972 Danforth Ave, East York,
+                        <p className="text-4xl font-extrabold text-yellow-500">Canada Studio:</p>
+                        <p className="text-3xl text-yellow-500">2972 Danforth Ave, East York,
                         ON, M4C 1M6</p>
 
                     </div>
-                    
+                      
 
                     {/* Social Icons */}
-                    <div className="flex space-x-4">
-                        <Link href="#" className="hover:text-yellow-500">
-                            <FaFacebook size={32} />
+                    <div className="flex flex-col items-end space-y-4">
+                        <Link href="#" className="hover:text-white text-yellow-500">
+                            <FaFacebook size={52} />
                         </Link>
-                        <Link href="#" className="hover:text-yellow-500">
-                            <FaInstagram size={32} />
+                        <Link href="#" className="hover:text-white text-yellow-500">
+                            <FaInstagram size={52} />
                         </Link>
-                        <Link target="blank" href="https://www.youtube.com/@99explainersKids" className="hover:text-yellow-500">
-                            <FaYoutube size={32} />
+                        <Link target="blank" href="https://www.youtube.com/@99explainersKids" className="hover:text-white text-yellow-500">
+                            <FaYoutube size={52} />
                         </Link>
-                        <Link href="#" className="hover:text-yellow-500">
-                            <FaWhatsapp size={32} />
+                        <Link href="#" className="hover:text-white text-yellow-500">
+                            <FaWhatsapp size={52} />
                         </Link>
-                        <Link href="#" className="hover:text-yellow-500">
-                            <FaLinkedin size={32} />
+                        <Link href="#" className="hover:text-white text-yellow-500">
+                            <FaLinkedin size={52} />
                         </Link>
                     </div>
                 </div>
