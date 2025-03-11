@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
                       
 
                     {/* Social Icons */}
-                    <div className="flex flex-col items-end space-y-4">
+                    <div className="flex md:flex-col items-end space-y-4 space-x-3">
                         <Link href="#" className="hover:text-white text-yellow-500">
                             <FaFacebook size={52} />
                         </Link>
