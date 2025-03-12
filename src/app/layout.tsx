@@ -4,7 +4,7 @@ import Navbar from "@/components/shared/navbar";
 import ImageSlider from "@/components/shared/ImageSlider";
 import LatestAddition from "@/components/LatestAddition";
 import './globals.css';
-import Footer from "@/components/shared/footer";
+import Footer2 from "@/components/shared/footer2";
 
 // export const metadata = {
 //   title: "99 Book Store",
@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navbar />
             <ImageSlider />
             <LatestAddition/>
-            <Footer/>
+            <Footer2/>
           </>
         )}
 

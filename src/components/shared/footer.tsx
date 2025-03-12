@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.css'; // Import SweetAlert's CSS
+import 'sweetalert2/dist/sweetalert2.css'; 
 
 
 interface ApiResponse {
@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
     const [message, setMessage] = useState("");
 
     const handleSubscribe = async (event: React.FormEvent) => {
-        event.preventDefault(); // Prevents page reload on form submit
+        event.preventDefault(); 
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/mailchimp/api/subscribe`, {
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
                 throw new Error(data.error || "Subscription failed");
             }
 
-            // Show success alert
+
             Swal.fire({
                 icon: 'success',
                 title: 'Thank You!',
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
             });
 
             setMessage("Subscription successful!");
-            setEmail(""); // Reset the email input field after successful subscription
+            setEmail(""); 
 
 
         } catch (error: unknown) {
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
             console.error("Subscription Error:", error);
             setMessage(errorMessage);
 
-            // Show error alert
+
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
