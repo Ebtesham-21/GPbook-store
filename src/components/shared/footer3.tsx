@@ -164,7 +164,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-center justify-center self-center">
             <div className="text-center w-full max-w-2xl px-4">
               <h3 className="text-2xl md:text-3xl font-semibold mb-6">
-                Subscribe To Get The Latest Updates
+                Subscribe To Get The Latest Updates!
               </h3>
 
               <form
