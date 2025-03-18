@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           // backgroundImage: "url(/FooterRed.png)",
-           backgroundImage: "url('/images/FooterExp.png')",
+           backgroundImage: "url('/images/Asset 3.png')",
 
           backgroundPosition: "center top",
         }}
@@ -160,11 +160,11 @@ const Footer: React.FC = () => {
           </div>
 
           {/* NewsLetter Section */}
-          <div className="flex flex-col md:flex-row md:gap-28 text-center md:text-left  md:pr-[25px]">
+          <div className="flex flex-col md:flex-row md:gap-29 text-center md:text-left  md:pr-[25px]">
           <div className="flex flex-col items-center justify-center self-center">
             <div className="text-center w-full max-w-2xl px-4">
               <h3 className="text-2xl md:text-3xl font-semibold mb-6">
-                Subscribe To Get The Latest Updates!
+                Subscribe To Get The Latest Updates
               </h3>
 
               <form
