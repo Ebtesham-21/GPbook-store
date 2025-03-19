@@ -68,13 +68,13 @@ const Footer: React.FC = () => {
 
 
   return (
-    <div className="relative bg-cover  bg-center min-h-screen w-full overflow-hidden font-poppins md:pt-28">
+    <div className="relative bg-cover   bg-center  w-full overflow-hidden font-poppins md:p-4">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           // backgroundImage: "url(/FooterRed.png)",
-           backgroundImage: "url('/images/Asset 3.png')",
+           backgroundImage: "url('/images/Asset 2.png')",
 
           backgroundPosition: "center top",
         }}
@@ -157,11 +157,23 @@ const Footer: React.FC = () => {
               </p>
              
             </div>
+             {/* Footer Bottom */}
+        <div className="mt-14 lg:mt-24 border-t border-white/10  pt-8 flex flex-col space-y-4">
+          {/* Links */}
+          <div className="flex space-x-6">
+            <Link href="/privacy-policy" className="hover:underline text-sm lg:text-base">
+              Privacy Policy
+            </Link>
+            <Link href="/terms-of-use" className="hover:underline text-sm lg:text-base">
+              Terms of Use
+            </Link>
+          </div>
+        </div>
           </div>
 
           {/* NewsLetter Section */}
-          <div className="flex flex-col md:flex-row md:gap-29 text-center md:text-left  md:pr-[25px]">
-          <div className="flex flex-col items-center justify-center self-center">
+          <div className="flex border-white flex-col md:flex-col md:gap-29 text-center md:text-left  md:pr-[25px]">
+          <div className="flex flex-col md:mb-16 items-center justify-center self-center">
             <div className="text-center w-full max-w-2xl px-4">
               <h3 className="text-2xl md:text-3xl font-semibold mb-6">
                 Subscribe To Get The Latest Updates!
@@ -189,21 +201,19 @@ const Footer: React.FC = () => {
               {message && <p className="mt-4">{message}</p>}
             </div>
           </div>
+          <div className="md:mt-30">
+          <Image
+                  src="/images/kid.png"
+                  alt="99explainers"
+                  width={550}
+                  height={375}
+                  className="mb-6 transform  transition-transform duration-300"
+                />
+          </div>
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="mt-8 lg:mt-36  pt-6 flex flex-col space-y-4">
-          {/* Links */}
-          <div className="flex space-x-6">
-            {/* <Link href="/privacy-policy" className="hover:underline text-sm lg:text-base">
-              Privacy Policy
-            </Link>
-            <Link href="/terms-of-use" className="hover:underline text-sm lg:text-base">
-              Terms of Use
-            </Link> */}
-          </div>
-        </div>
+       
       </div>
     </div>
   );
