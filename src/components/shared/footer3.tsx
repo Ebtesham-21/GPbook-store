@@ -193,7 +193,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-8 lg:mt-36 border-t border-white/20 pt-6 flex flex-col space-y-4">
+        <div className="mt-8 lg:mt-36  pt-6 flex flex-col space-y-4">
           {/* Links */}
           <div className="flex space-x-6">
             {/* <Link href="/privacy-policy" className="hover:underline text-sm lg:text-base">
